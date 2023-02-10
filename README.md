@@ -25,10 +25,14 @@ npm install -D typescript
 npm create vite@latest DCS-Coding-Challenge-React --template react-ts
 cd DCS-Coding-Challenge-React
 
-
-
 -   `npm install`
 -   `npm run dev`
+
+npm install @mui/material @emotion/react @emotion/styled
+
+## Wakatime - This project
+
+<a href="https://wakatime.com/badge/user/cee95ec9-130e-4f66-8097-0123d00e7dfd/project/e8e685f0-0dd8-436f-8b62-34c90b87562e"><img src="https://wakatime.com/badge/user/cee95ec9-130e-4f66-8097-0123d00e7dfd/project/e8e685f0-0dd8-436f-8b62-34c90b87562e.svg" alt="wakatime"></a>
 
 ## Source
 
