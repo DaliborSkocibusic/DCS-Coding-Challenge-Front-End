@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-
+import Poll from "./components/poll";
 import TextField from "@mui/material/TextField";
 
 function App() {
@@ -30,6 +30,10 @@ function App() {
                 <TextField variant="standard" label="Username" />
                 <br></br>
             </div>
+            <div>
+                <Poll />
+            </div>
+
             <h1>Vite + React</h1>
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
