@@ -1,41 +1,42 @@
 import { useEffect, useState } from "react";
 import Users from "../components/Users";
 import { configureStore } from "@reduxjs/toolkit";
+import Card from "@mui/material/Card";
 
 // import style from "./../../styles/containers.module.scss";
 //
 
-// function UserCard({ key, data }: { key: number; data: any }) {
-function UserCard({ data2 }: { data2: any }) {
-    return (
-        <div>
-            {data2.map(
-                (value: any, i: number) => (
-                    // alert("in generate user list"),
-                    alert(JSON.stringify(value)),
-                    (
-                        <div>
-                            {/* {alert(JSON.stringify(data))},
-                        {alert(JSON.stringify(data))},
-                    {alert(JSON.stringify(value)} */}
-                            <UserCard
-                                // console.log("value: " + value + " i: " + i ),
-                                key={i}
-                                data2={value}
-                                //  code={expiation.expiationOffenceCode}
-                                //  description={expiation.expiationOffenceDescription}
-                                //  category={expiation.expiationCategory}
-                            />
-                            <p>{JSON.stringify(value)}</p>
-                            {/* {alert(JSON.stringify(value))} */}
-                        </div>
-                    )
-                ),
-                // alert("end generate user list"),
-            )}
-        </div>
-    );
-}
+// // function UserCard({ key, data }: { key: number; data: any }) {
+// function UserCard({ data2 }: { data2: any }) {
+//     return (
+//         <div>
+//             {data2.map(
+//                 (value: any, i: number) => (
+//                     // alert("in generate user list"),
+//                     alert(JSON.stringify(value)),
+//                     (
+//                         <div>
+//                             {/* {alert(JSON.stringify(data))},
+//                         {alert(JSON.stringify(data))},
+//                     {alert(JSON.stringify(value)} */}
+//                             <UserCard
+//                                 // console.log("value: " + value + " i: " + i ),
+//                                 key={i}
+//                                 data2={value}
+//                                 //  code={expiation.expiationOffenceCode}
+//                                 //  description={expiation.expiationOffenceDescription}
+//                                 //  category={expiation.expiationCategory}
+//                             />
+//                             <p>{JSON.stringify(value)}</p>
+//                             {/* {alert(JSON.stringify(value))} */}
+//                         </div>
+//                     )
+//                 ),
+//                 // alert("end generate user list"),
+//             )}
+//         </div>
+//     );
+// }
 
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
@@ -55,97 +56,95 @@ const ResultContainer = () => {
         });
     }, []);
 
-    // generateUserList(users);
-    users.map((element: any) => {
-        // alert(element);
-    });
+    // // generateUserList(users);
+    // users.map((element: any) => {
+    //     // alert(element);
+    // });
 
     return (
-        <section>
+        <>
             {/* {JSON.stringify(users)} */}
             {generateUserList(users)}
-        </section>
+        </>
     );
 };
 
 export default ResultContainer;
 
-// {
-//     value.map((value2: any, i: number) => {
-//         <div>
-//             {/* <p>{JSON.stringify(value2)}</p>; */}
-//         </div>;
-//     });
-// }
-
 function generateUserList(data: any) {
     // alert(JSON.stringify(data));
     return (
-        <section>
-            {data.map(
-                (value: any, i: number) => (
-                    <div>
-                        <p>{JSON.stringify(value)}</p>
-                    </div>
-                ),
-                // alert("end generate user list"),
-            )}
-        </section>
+        <div className="test">
+            {data.map((value: any, i: number) => (
+                <div key={i}>
+                    {/* <div>{JSON.stringify(value)}</div> */}
+                    <div className="Test">{generateUserListSingle(value)}</div>
+                </div>
+            ))}
+        </div>
     );
 }
 
-// const generateNullList = () => {
-//     return <div>Sorry my dude, nothing found. Everyone is innocent</div>;
-// };
+function generateUserListSingle(data2: any) {
+    // alert(JSON.stringify(data2));
 
-// const generateSearchButton = (searchQuery) => {
-//     return (
-//         <div className="col text-left">
-//             <button
-//                 type="button"
-//                 className="btn btn-primary"
-//                 onClick={searchQuery}>
-//                 Search
-//             </button>
-//         </div>
-//     );
-// };
+    for (let i in data2) {
+        switch (i) {
+            case "id":
+                // alert("ID: " + data2[i]);
+                var id = data2[i];
+                break;
 
-// const generateSearchBar = (searchQuery, expiations) => {
-//     return (
-//         <div className="col-12 SearchBar">
-//             <input
-//                 type="text"
-//                 name="searchText"
-//                 className="form-control-l"
-//                 placeholder="Enter code or keywords"
-//                 // TBH dont even need a search button now..
-//                 onChange={searchQuery} // Added to make it more responsive
-//                 list="datalist-search"
-//                 id="search-choice"
-//             />
-//             {/* Sourece: Used to figure out map over datalist
-//                     https://stackoverflow.com/questions/46978730/how-to-iterate-through-array-and-show-datalist-in-jsx*/}
-//             {/* cant format but looks good in firefox. bad in chroem
-//              */}
-//             {/* https://stackoverflow.com/questions/13693482/is-there-a-way-to-apply-a-css-style-on-html5-datalist-options */}
-//             <datalist id="datalist-search">
-//                 {/* Populate datalist with expiation offence codes */}
-//                 {expiations.map((expiation, i) => (
-//                     <option
-//                         key={i}
-//                         value={expiation.expiationOffenceCode}></option>
-//                 ))}
+            case "firstName":
+                // alert("First Name: " + data2[i]);
+                var firstName = data2[i];
+                break;
 
-//                 {/* Populate datalist with expiation offence descriptions */}
-//                 {expiations.map((expiation, i) => (
-//                     <option
-//                         key={i}
-//                         value={expiation.expiationOffenceDescription}></option>
-//                 ))}
-//             </datalist>
-//         </div>
-//     );
-// };
+            case "middleName":
+                // alert("Middle Name: " + data2[i]);
+                var middleName = data2[i];
+                break;
 
-// export default ResultContainer;
+            case "lastName":
+                // alert("Last Name: " + data2[i]);
+                var lastName = data2[i];
+                break;
+
+            case "contractLength":
+                // alert("Contract Length: " + data2[i]);
+                var contractLength = data2[i];
+                break;
+
+            case "emailAddress":
+                // alert("Email Address: " + data2[i]);
+                var emailAddress = data2[i];
+                break;
+        }
+    }
+
+    return (
+        <Card className="card logo react" variant="outlined">
+            <div className="nameContainer">
+                <div className="firstName">
+                    <div>First Name</div>
+                    <div>{firstName}</div>
+                </div>
+                <div className="firstName">
+                    <div>MiddleName</div>
+                    <div>{middleName}</div>
+                </div>
+                <div className="firstName">
+                    <div>LastName</div>
+                    <div>{lastName}</div>
+                </div>
+            </div>
+            <p>Contract Length</p>
+            <p>{contractLength}</p>
+            <p>Email Address</p>
+            <p>{emailAddress}</p>
+        </Card>
+    );
+}
+{
+    /* {alert("end generate user list")} */
+}

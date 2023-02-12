@@ -6,14 +6,42 @@
 }
 
 .logo {
-  height: 6em;
   padding: 1.5em;
+  margin: 5em;
+  width: auto;
   will-change: filter;
   transition: filter 300ms;
 }
+
+.test {
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nameContainer {
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em;
+  width: 20vw;
+}
+
+.firstName {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 30vw;
+}
+
+.firstName:hover {
+  filter: drop-shadow(0 0 1em #f7039aaa);
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +50,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
