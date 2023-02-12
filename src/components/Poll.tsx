@@ -4,7 +4,9 @@ import { useEffect } from "react";
 const Poll = () => {
     useEffect(() => {
         fetch(
-            "http://localhost:8080/", // +
+            "http://localhost:8080/User",
+            // { mode: "no-cors" },
+            // +
             // region +
             // "&year=" +
             // validYear +
@@ -15,7 +17,7 @@ const Poll = () => {
                     response
                         .json()
                         // .then((data) => console.log(JSON.stringify(data)))
-                        .then((data) => console.log(data));
+                        .then((data) => alert(JSON.stringify(data)));
                 }
             })
             .catch((error) => {
@@ -24,7 +26,7 @@ const Poll = () => {
             });
     }, []);
 
-    return <div>poll</div>;
+    return <div>pollh</div>;
 };
 
 export default Poll;
