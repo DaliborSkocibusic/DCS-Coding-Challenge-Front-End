@@ -1,71 +1,145 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 10px;
+    background-color: white;
 }
 
-.logo {
-  padding: 1.5em;
-  margin: 5em;
-  width: auto;
-  will-change: filter;
-  transition: filter 300ms;
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 .test {
-  background-color: red;
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.nameContainer {
-  background-color: aqua;
-  display: flex;
-  flex-direction: row;
-  padding: 0.5em;
-  width: 20vw;
+.nameField {
+    flex-direction: column;
+    padding: 0.2em;
+    align-items: center;
+    justify-content: left;
 }
 
 .firstName {
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
-  width: 30vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    height: 4em;
+    justify-content: center;
+    align-items: center;
+}
+
+.contrastColour {
+    color: #5a5a5a;
+}
+
+.editButtons {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.topContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.1em;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+
+.bottomContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0.1em;
+    height: 100px;
+    /* border: 2px solid black; */
+}
+
+.emailAddress {
+    display: flex;
+    flex-direction: row;
+    width: 20em;
+    align-items: center;
+    justify-self: center;
+
 }
 
 .firstName:hover {
-  filter: drop-shadow(0 0 1em #f7039aaa);
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+    filter: drop-shadow(0 0 1em #f7039aaa);
 }
 
 .card {
-  padding: 2em;
+    padding: 2em;
+    padding: 1.5em;
+    border: 2px solid black;
+    margin: 0.5em;
+    border-radius: 10;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    opacity: 70%;
+
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+    opacity: 100%;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
+/* 
+
+@media only screen and (max-width: 599px) {
+    width: 70vw;
+    height: $min-height-month-expiation-card;
+}
+
+
+@mixin ExpiationCard2 {
+    @media (min-width: 600px) {
+        width: 60vw;
+        height: $min-height-month-expiation-card;
+    }
+}
+
+@mixin ExpiationCard3 {
+    @media (min-width: 900px) {
+        width: 45vw;
+        height: $min-height-month-expiation-card;
+    }
+}
+
+@mixin ExpiationCard4 {
+    @media (min-width: 1200px) {
+        width: 30vw;
+        height: $min-height-month-expiation-card;
+    }
+}
+
+@mixin ExpiationCard5 {
+    @media (min-width: 1800px) {
+        width: 20vw;
+        height: $min-height-month-expiation-card;
+    }
+}
+
+@mixin ExpiationCard6 {
+    @media (min-width: 2000px) {
+        width: 20vw;
+        height: $min-height-month-expiation-card;
+    }
+}
+
+@mixin ExpiationCard7 {
+    @media (min-width: 2400px) {
+        width: 15vw;
+        height: $min-height-month-expiation-card*1.2;
+    }
+} */

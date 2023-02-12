@@ -3,50 +3,8 @@ import Users from "../components/Users";
 import { configureStore } from "@reduxjs/toolkit";
 import Card from "@mui/material/Card";
 
-// import style from "./../../styles/containers.module.scss";
-//
-
-// // function UserCard({ key, data }: { key: number; data: any }) {
-// function UserCard({ data2 }: { data2: any }) {
-//     return (
-//         <div>
-//             {data2.map(
-//                 (value: any, i: number) => (
-//                     // alert("in generate user list"),
-//                     alert(JSON.stringify(value)),
-//                     (
-//                         <div>
-//                             {/* {alert(JSON.stringify(data))},
-//                         {alert(JSON.stringify(data))},
-//                     {alert(JSON.stringify(value)} */}
-//                             <UserCard
-//                                 // console.log("value: " + value + " i: " + i ),
-//                                 key={i}
-//                                 data2={value}
-//                                 //  code={expiation.expiationOffenceCode}
-//                                 //  description={expiation.expiationOffenceDescription}
-//                                 //  category={expiation.expiationCategory}
-//                             />
-//                             <p>{JSON.stringify(value)}</p>
-//                             {/* {alert(JSON.stringify(value))} */}
-//                         </div>
-//                     )
-//                 ),
-//                 // alert("end generate user list"),
-//             )}
-//         </div>
-//     );
-// }
-
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
-    const [query, setQuery] = useState("");
-
-    // const searchQuery = (evt) => {
-    //     const value = document.querySelector('[name="searchText"]').value;
-    //     setQuery(value);
-    // };
-    // alert(JSON.stringify(users));
 
     useEffect(() => {
         fetch("http://localhost:8080/User").then((response) => {
@@ -56,14 +14,9 @@ const ResultContainer = () => {
         });
     }, []);
 
-    // // generateUserList(users);
-    // users.map((element: any) => {
-    //     // alert(element);
-    // });
-
     return (
         <>
-            {/* {JSON.stringify(users)} */}
+            <h1 className="contrastColour">Employee List</h1>;
             {generateUserList(users)}
         </>
     );
@@ -77,8 +30,7 @@ function generateUserList(data: any) {
         <div className="test">
             {data.map((value: any, i: number) => (
                 <div key={i}>
-                    {/* <div>{JSON.stringify(value)}</div> */}
-                    <div className="Test">{generateUserListSingle(value)}</div>
+                    <div>{generateUserListSingle(value)}</div>
                 </div>
             ))}
         </div>
@@ -123,25 +75,29 @@ function generateUserListSingle(data2: any) {
     }
 
     return (
-        <Card className="card logo react" variant="outlined">
-            <div className="nameContainer">
+        <Card className="card logo react hoverForCards" variant="outlined">
+            <div className="topContainer">
                 <div className="firstName">
-                    <div>First Name</div>
-                    <div>{firstName}</div>
+                    {/* <div className="nameField">First Name</div> */}
+                    <div className="nameField">
+                        {firstName} {middleName} {lastName}
+                    </div>
                 </div>
-                <div className="firstName">
-                    <div>MiddleName</div>
-                    <div>{middleName}</div>
-                </div>
-                <div className="firstName">
-                    <div>LastName</div>
-                    <div>{lastName}</div>
+
+                <div className="editButtons">
+                    <div className="nameField">Edit</div>
+                    <div className="nameField">Remove</div>
                 </div>
             </div>
-            <p>Contract Length</p>
-            <p>{contractLength}</p>
-            <p>Email Address</p>
-            <p>{emailAddress}</p>
+            <div className="bottomContainer">
+                <div className="emailAddress">
+                    Contract Length - {contractLength}
+                </div>
+                <div className="emailAddress">
+                    Email Address: {emailAddress}
+                </div>
+                {/* <a href="subdoimain to go go" className="emailAddress"></a> */}
+            </div>
         </Card>
     );
 }
