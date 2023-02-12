@@ -74,19 +74,25 @@ function generateUserListSingle(data2: any) {
         }
     }
 
+    let url = "localhost:5173/" + JSON.stringify(id);
     return (
         <Card className="card logo react hoverForCards" variant="outlined">
             <div className="topContainer">
                 <div className="firstName">
                     {/* <div className="nameField">First Name</div> */}
                     <div className="nameField">
-                        {firstName} {middleName} {lastName}
+                        {firstName} {middleName} {lastName} {id}
                     </div>
                 </div>
 
+                {/* Cant be a href needs to send post request */}
                 <div className="editButtons">
                     <div className="nameField">Edit</div>
-                    <div className="nameField">Remove</div>
+
+                    {/* Cant be a href needs to send delete request */}
+                    <a href={url} className="nameField">
+                        Remove
+                    </a>
                 </div>
             </div>
             <div className="bottomContainer">
