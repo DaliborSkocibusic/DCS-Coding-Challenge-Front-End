@@ -1,8 +1,8 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import Poll from "./components/poll";
 import TextField from "@mui/material/TextField";
+import ResultContainer from "./containers/ResultContainer";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -31,7 +31,7 @@ function App() {
                 <br></br>
             </div>
             <div>
-                <Poll />
+                <ResultContainer />
             </div>
 
             <h1>Vite + React</h1>
