@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Users from "../components/Users";
 import { configureStore } from "@reduxjs/toolkit";
 import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
 
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
@@ -25,7 +26,6 @@ const ResultContainer = () => {
 export default ResultContainer;
 
 function generateUserList(data: any) {
-    // alert(JSON.stringify(data));
     return (
         <div className="test">
             {data.map((value: any, i: number) => (
@@ -37,38 +37,79 @@ function generateUserList(data: any) {
     );
 }
 
-function generateUserListSingle(data2: any) {
-    // alert(JSON.stringify(data2));
+// Delete format needed by server
+// {
+//     "firstName": "Dalibor",
+//     "middleName": "Dali",
+//     "lastName": "Stevens",
+//     "contractLength": 50,
+//     "emailAddress": "D@Dali.com"
+// },
 
+function deleteUser(id: any) {
+    // POST request using fetch with error handling
+    const requestOptions = {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            firstName: "Dalibor",
+            middleName: "Dali",
+            lastName: "Stevens",
+            contractLength: 50,
+            emailAddress: "D@Dali.com",
+        }),
+    };
+
+    let alertvar = "Deleting user id: " + id["id"];
+
+    alert(alertvar);
+    const deleteUrl = "http://localhost:8080/User/" + id["id"];
+    fetch(deleteUrl, requestOptions).then(async (response) => {
+        const isJson = response.headers
+            .get("content-type")
+            ?.includes("application/json");
+        const data = isJson && (await response.json());
+
+        // check for error response
+        if (!response.ok) {
+            // get error message from body or default to response status
+            const error = (data && data.message) || response.status;
+            return Promise.reject(error);
+        }
+
+        // this.setState({ postId: data.id })
+        // })
+        // .catch((error) => {
+        //     this.setState({ errorMessage: error.toString() });
+        //     console.error("There was an error!", error);
+    });
+    // window.location.reload();
+}
+
+function generateUserListSingle(data2: any) {
     for (let i in data2) {
         switch (i) {
             case "id":
-                // alert("ID: " + data2[i]);
                 var id = data2[i];
                 break;
 
             case "firstName":
-                // alert("First Name: " + data2[i]);
                 var firstName = data2[i];
                 break;
 
             case "middleName":
-                // alert("Middle Name: " + data2[i]);
                 var middleName = data2[i];
                 break;
 
             case "lastName":
-                // alert("Last Name: " + data2[i]);
                 var lastName = data2[i];
                 break;
 
             case "contractLength":
-                // alert("Contract Length: " + data2[i]);
                 var contractLength = data2[i];
                 break;
 
             case "emailAddress":
-                // alert("Email Address: " + data2[i]);
                 var emailAddress = data2[i];
                 break;
         }
@@ -79,20 +120,22 @@ function generateUserListSingle(data2: any) {
         <Card className="card logo react hoverForCards" variant="outlined">
             <div className="topContainer">
                 <div className="firstName">
-                    {/* <div className="nameField">First Name</div> */}
                     <div className="nameField">
                         {firstName} {middleName} {lastName} {id}
                     </div>
                 </div>
 
-                {/* Cant be a href needs to send post request */}
                 <div className="editButtons">
                     <div className="nameField">Edit</div>
-
-                    {/* Cant be a href needs to send delete request */}
-                    <a href={url} className="nameField">
-                        Remove
-                    </a>
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            className="blackFont"
+                            onClick={() => deleteUser({ id })}>
+                            BADB
+                        </Button>
+                    </div>
                 </div>
             </div>
             <div className="bottomContainer">
@@ -102,11 +145,7 @@ function generateUserListSingle(data2: any) {
                 <div className="emailAddress">
                     Email Address: {emailAddress}
                 </div>
-                {/* <a href="subdoimain to go go" className="emailAddress"></a> */}
             </div>
         </Card>
     );
-}
-{
-    /* {alert("end generate user list")} */
 }
