@@ -3,6 +3,8 @@ import Users from "../components/Users";
 import { configureStore } from "@reduxjs/toolkit";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
+import { Link, useNavigate } from "react-router-dom";
+import CreateUser from "../components/CreateUser";
 
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
@@ -18,6 +20,7 @@ const ResultContainer = () => {
     return (
         <>
             <h1 className="contrastColour">Employee List</h1>;
+            <a href="/Create">Create</a>
             {generateUserList(users)}
         </>
     );
@@ -37,14 +40,7 @@ function generateUserList(data: any) {
     );
 }
 
-// Delete format needed by server
-// {
-//     "firstName": "Dalibor",
-//     "middleName": "Dali",
-//     "lastName": "Stevens",
-//     "contractLength": 50,
-//     "emailAddress": "D@Dali.com"
-// },
+
 
 function deleteUser(id: any) {
     // POST request using fetch with error handling
@@ -52,8 +48,8 @@ function deleteUser(id: any) {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            firstName: "Dalibor",
-            middleName: "Dali",
+            firstName: "John",
+            middleName: "Smith",
             lastName: "Stevens",
             contractLength: 50,
             emailAddress: "D@Dali.com",
@@ -118,16 +114,14 @@ function generateUserListSingle(data2: any) {
                 </div>
 
                 <div className="editButtons">
-                    <div className="nameField">Edit</div>
-                    <div>
-                        <Button
-                            variant="contained"
-                            color="error"
-                            className="blackFont"
-                            onClick={() => deleteUser({ id })}>
-                            Delete
-                        </Button>
-                    </div>
+                    <a href="/Edit">Edit</a>
+                    <Button
+                        variant="contained"
+                        color="error"
+                        className="blackFont"
+                        onClick={() => deleteUser({ id })}>
+                        Delete
+                    </Button>
                 </div>
             </div>
             <div className="bottomContainer">
