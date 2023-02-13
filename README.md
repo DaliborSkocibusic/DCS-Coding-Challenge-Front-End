@@ -25,6 +25,8 @@ When developing components, you may want assets automatically compiled and the b
 ## Wakatime - This project
 
 <a href="https://wakatime.com/badge/user/cee95ec9-130e-4f66-8097-0123d00e7dfd/project/e8e685f0-0dd8-436f-8b62-34c90b87562e"><img src="https://wakatime.com/badge/user/cee95ec9-130e-4f66-8097-0123d00e7dfd/project/e8e685f0-0dd8-436f-8b62-34c90b87562e.svg" alt="wakatime"></a>
+Wrong link. more like 7.5 hours. will update later. 
+
 
 ## Repo structure - To Be Done
 
