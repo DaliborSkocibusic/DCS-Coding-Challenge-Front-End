@@ -1,9 +1,14 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 
-// src/components/Topics.tsx
 const UserInput = () => {
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        firstName: "firstName",
+        middleName: "middleName",
+        lastName: "lastName",
+        contractLength: 1,
+        emailAddress: "example@example.com",
+    });
 
     const handleChange = (event: { target: { name: any; value: any } }) => {
         const name = event.target.name;
@@ -13,27 +18,57 @@ const UserInput = () => {
 
     const handleSubmit = (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        alert(inputs);
+        createUser(inputs);
+        // alert(JSON.stringify(inputs));
     };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Enter your name:
+                    Enter the first name:
                     <input
-                        type="text"
-                        name="username"
-                        // value={inputs.username || ""}
+                        type="string"
+                        name="firstName"
+                        value={inputs.firstName || ""}
                         onChange={handleChange}
                     />
                 </label>
                 <label>
-                    Enter your age:
+                    Enter the middle name:
+                    <input
+                        type="string"
+                        name="middleName"
+                        value={inputs.middleName || ""}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    Enter the last name:
+                    <input
+                        type="string"
+                        name="lastName"
+                        value={inputs.lastName || ""}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                <label>
+                    Enter the contract length:
                     <input
                         type="number"
-                        name="age"
-                        // value={inputs.age || ""}
+                        name="contractlenght"
+                        value={inputs.contractLength || ""}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                <label>
+                    Enter the email address:
+                    <input
+                        type="string"
+                        name="emailAddress"
+                        value={inputs.emailAddress || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -45,25 +80,22 @@ const UserInput = () => {
 };
 export default UserInput;
 
-function deleteUser(id: any) {
+function createUser(inputs: any) {
     // POST request using fetch with error handling
+    alert("Inputs are: " + inputs);
     const requestOptions = {
-        method: "DELETE",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            firstName: "Dalibor",
-            middleName: "Dali",
-            lastName: "Stevens",
-            contractLength: 50,
-            emailAddress: "D@Dali.com",
-        }),
+
+        body: inputs,
     };
 
-    let alertvar = "Deleting user id: " + id["id"];
+    let alertvar = "We are passing in : " + JSON.stringify(requestOptions);
 
     alert(alertvar);
-    const deleteUrl = "http://localhost:8080/User/" + id["id"];
-    fetch(deleteUrl, requestOptions).then(async (response) => {
+    alert(typeof inputs);
+    const createUrl = "http://localhost:8080/User";
+    fetch(createUrl, requestOptions).then(async (response) => {
         const isJson = response.headers
             .get("content-type")
             ?.includes("application/json");
