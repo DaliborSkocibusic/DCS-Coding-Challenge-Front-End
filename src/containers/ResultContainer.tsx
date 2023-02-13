@@ -13,7 +13,7 @@ const ResultContainer = () => {
                 response.json().then((data) => setUsers(data)); //alert(JSON.stringify(data)));
             }
         });
-    }, []);
+    });
 
     return (
         <>
@@ -70,20 +70,11 @@ function deleteUser(id: any) {
             ?.includes("application/json");
         const data = isJson && (await response.json());
 
-        // check for error response
         if (!response.ok) {
-            // get error message from body or default to response status
             const error = (data && data.message) || response.status;
             return Promise.reject(error);
         }
-
-        // this.setState({ postId: data.id })
-        // })
-        // .catch((error) => {
-        //     this.setState({ errorMessage: error.toString() });
-        //     console.error("There was an error!", error);
     });
-    // window.location.reload();
 }
 
 function generateUserListSingle(data2: any) {
@@ -116,6 +107,7 @@ function generateUserListSingle(data2: any) {
     }
 
     let url = "localhost:5173/" + JSON.stringify(id);
+
     return (
         <Card className="card logo react hoverForCards" variant="outlined">
             <div className="topContainer">
@@ -133,7 +125,7 @@ function generateUserListSingle(data2: any) {
                             color="error"
                             className="blackFont"
                             onClick={() => deleteUser({ id })}>
-                            BADB
+                            Delete
                         </Button>
                     </div>
                 </div>
