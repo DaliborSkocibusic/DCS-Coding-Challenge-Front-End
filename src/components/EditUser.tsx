@@ -1,13 +1,28 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 const EditUser = () => {
     // alert("WORKS");
     const { id } = useParams();
-    const ler = useLocation();
 
-    alert(id);
+    let retval = {
+        id: 0,
+        firstName: "firstName",
+        middleName: "lastName",
+        lastName: "middleName",
+        contractLength: 1,
+        emailAddress: "example@example.com",
+    };
+
+    // let sar = "ID IS: " + id;
+    // console.log(sar);
+
+    let userDetails = getUser(id).then((data) => {
+        console.log(data);
+    });
+
+    console.log("Get user test" + userDetails);
     const [inputs, setInputs] = useState({
         firstName: "firstName",
         middleName: "middleName",
@@ -26,7 +41,7 @@ const EditUser = () => {
 
     const handleSubmit = (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        createUser(inputs);
+        updateUser(inputs);
     };
 
     return (
@@ -37,7 +52,7 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="firstName"
-                        value={inputs.firstName || ""}
+                        value={userDetails.firstName || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -46,7 +61,7 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="middleName"
-                        value={inputs.middleName || ""}
+                        value={userDetails.middleName || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -55,7 +70,7 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="lastName"
-                        value={inputs.lastName || ""}
+                        value={userDetails.lastName || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -65,7 +80,7 @@ const EditUser = () => {
                     <input
                         type="number"
                         name="contractlenght"
-                        value={inputs.contractLength || ""}
+                        value={userDetails.contractLength || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -75,7 +90,7 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="emailAddress"
-                        value={inputs.emailAddress || ""}
+                        value={userDetails.emailAddress || ""}
                         onChange={handleChange}
                     />
                 </label>
@@ -87,7 +102,7 @@ const EditUser = () => {
 };
 export default EditUser;
 
-function createUser(inputs: any) {
+function updateUser(inputs: any) {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -108,38 +123,22 @@ function createUser(inputs: any) {
             const error = (data && data.message) || response.status;
             return Promise.reject(error);
         }
-    });
+    }),
+        [];
 }
 
 function getUser(id: any) {
     // POST request using fetch with error handling
-    const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+    let cleanId = parseInt(id);
+    // console.log("clean id is: " + cleanId);
 
-        // Needs post body otherwise it doesnt refresh..
-        body: JSON.stringify({
-            firstName: "John",
-            middleName: "Smith",
-            lastName: "Stevens",
-            contractLength: 50,
-            emailAddress: "Test@Test.com",
-        }),
-    };
-
-    let alertvar = "Getting user id: " + id["id"];
-
-    alert(alertvar);
-    const deleteUrl = "http://localhost:8080/User/" + id["id"];
-    fetch(deleteUrl, requestOptions).then(async (response) => {
-        const isJson = response.headers
-            .get("content-type")
-            ?.includes("application/json");
-        const data = isJson && (await response.json());
-
-        if (!response.ok) {
-            const error = (data && data.message) || response.status;
-            return Promise.reject(error);
+    return fetch("http://localhost:8080/User").then((response) => {
+        if (response.status == 200) {
+            response.json().then((data) => {
+                data.find((user: any) => user.id === cleanId);
+            });
+        } else {
+            return response.status;
         }
     });
 }

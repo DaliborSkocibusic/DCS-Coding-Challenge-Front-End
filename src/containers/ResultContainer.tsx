@@ -61,7 +61,7 @@ function deleteUser(id: any) {
 
     let alertvar = "Deleting user id: " + id["id"];
 
-    alert(alertvar);
+    console.timeLog(alertvar);
     const deleteUrl = "http://localhost:8080/User/" + id["id"];
     fetch(deleteUrl, requestOptions).then(async (response) => {
         const isJson = response.headers
