@@ -73,7 +73,7 @@ const UserInput = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <input type="submit" />
+                <input type="submit" onClick={() => alert("User Created")} />
             </form>
             <a href="/">Go Back</a>
         </>

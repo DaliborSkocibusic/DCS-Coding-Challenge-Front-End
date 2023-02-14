@@ -6,22 +6,16 @@ const EditUser = () => {
     // alert("WORKS");
     const { id } = useParams();
 
-    let retval = {
-        id: 0,
-        firstName: "firstName",
-        middleName: "lastName",
-        lastName: "middleName",
-        contractLength: 1,
-        emailAddress: "example@example.com",
-    };
+    let cleanId = id;
+    console.log("clean id is: " + cleanId);
 
-    // let sar = "ID IS: " + id;
-    // console.log(sar);
+    let userDetails = fetch("http://localhost:8080/User")
+        .then((response) => response.json())
+        .then((text) => {
+            return text.find((user: any) => user.id === cleanId);
+        });
 
-    let userDetails = getUser(id).then((data) => {
-        console.log(data);
-    });
-
+    let stuff = getData;
     console.log("Get user test" + userDetails);
     const [inputs, setInputs] = useState({
         firstName: "firstName",
@@ -127,18 +121,8 @@ function updateUser(inputs: any) {
         [];
 }
 
-function getUser(id: any) {
-    // POST request using fetch with error handling
-    let cleanId = parseInt(id);
-    // console.log("clean id is: " + cleanId);
+async function getData(url: RequestInfo | URL) {
+    const response = await fetch(url);
 
-    return fetch("http://localhost:8080/User").then((response) => {
-        if (response.status == 200) {
-            response.json().then((data) => {
-                data.find((user: any) => user.id === cleanId);
-            });
-        } else {
-            return response.status;
-        }
-    });
+    return response.json();
 }
