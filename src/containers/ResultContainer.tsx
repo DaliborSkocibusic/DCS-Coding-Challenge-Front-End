@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import CreateUser from "../components/CreateUser";
+import EditUser from "../components/EditUser";
 
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
@@ -40,19 +41,19 @@ function generateUserList(data: any) {
     );
 }
 
-
-
 function deleteUser(id: any) {
     // POST request using fetch with error handling
     const requestOptions = {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
+
+        // Needs post body otherwise it doesnt refresh..
         body: JSON.stringify({
             firstName: "John",
             middleName: "Smith",
             lastName: "Stevens",
             contractLength: 50,
-            emailAddress: "D@Dali.com",
+            emailAddress: "Test@Test.com",
         }),
     };
 
@@ -114,7 +115,10 @@ function generateUserListSingle(data2: any) {
                 </div>
 
                 <div className="editButtons">
-                    <a href="/Edit">Edit</a>
+                    {/* <a href="/Edit">Edit</a> */}
+
+                    <Link to={"/EditUser/" + id}>EEDIT USER</Link>
+
                     <Button
                         variant="contained"
                         color="error"

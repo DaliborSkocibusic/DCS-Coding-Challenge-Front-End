@@ -10,6 +10,8 @@ const UserInput = () => {
         emailAddress: "example@example.com",
     });
 
+    let inputsadf = "INPUT IS: " + JSON.stringify(inputs.contractLength);
+
     const handleChange = (event: { target: { name: any; value: any } }) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -18,8 +20,7 @@ const UserInput = () => {
 
     const handleSubmit = (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        createUser(inputs);
-        // alert(JSON.stringify(inputs));
+        createNewUser(inputs);
     };
 
     return (
@@ -80,20 +81,16 @@ const UserInput = () => {
 };
 export default UserInput;
 
-function createUser(inputs: any) {
-    // POST request using fetch with error handling
-    alert("Inputs are: " + inputs);
+function createNewUser(inputs: any) {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
 
-        body: inputs,
+        body: JSON.stringify(inputs),
     };
 
     let alertvar = "We are passing in : " + JSON.stringify(requestOptions);
 
-    alert(alertvar);
-    alert(typeof inputs);
     const createUrl = "http://localhost:8080/User";
     fetch(createUrl, requestOptions).then(async (response) => {
         const isJson = response.headers
