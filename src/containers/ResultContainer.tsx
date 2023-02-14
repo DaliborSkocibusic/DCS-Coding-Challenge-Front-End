@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import CreateUser from "../components/CreateUser";
 import EditUser from "../components/EditUser";
 
+import { redirect } from "react-router-dom";
+
 const ResultContainer = () => {
     const [users, setUsers] = useState<any>([]);
 
@@ -116,9 +118,7 @@ function generateUserListSingle(data2: any) {
 
                 <div className="editButtons">
                     {/* <a href="/Edit">Edit</a> */}
-
                     <Link to={"/EditUser/" + id}>EEDIT USER</Link>
-
                     <Button
                         variant="contained"
                         color="error"

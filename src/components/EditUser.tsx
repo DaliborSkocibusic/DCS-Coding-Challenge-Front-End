@@ -1,7 +1,13 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 const EditUser = () => {
+    // alert("WORKS");
+    const { id } = useParams();
+    const ler = useLocation();
+
+    alert(id);
     const [inputs, setInputs] = useState({
         firstName: "firstName",
         middleName: "middleName",
