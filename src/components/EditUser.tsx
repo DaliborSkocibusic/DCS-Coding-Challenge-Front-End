@@ -4,19 +4,24 @@ import { useLocation, useParams } from "react-router-dom";
 
 const EditUser = () => {
     // alert("WORKS");
-    const { id } = useParams();
+    const id = useParams();
+    // console.log(id.id);
 
-    let cleanId = id;
-    console.log("clean id is: " + cleanId);
+    // let cleanId = id;
+    // console.log("clean id is: " + id + ". Type is: "+ {typeof(id)});
 
-    let userDetails = fetch("http://localhost:8080/User")
-        .then((response) => response.json())
-        .then((text) => {
-            return text.find((user: any) => user.id === cleanId);
-        });
+    let userDetails = fetch("http://localhost:8080/User");
+    // .then((response) => response.json())
+    // .then((text) => {
+    //     return text.find((user: any) => user.id === id.id);
+    // });
 
-    let stuff = getData;
-    console.log("Get user test" + userDetails);
+    // let stuff = getData(id);
+    console.log("Userdetails fetched: " + userDetails);
+
+    console.log(
+        "Get user test" + userDetails.then((abc) => console.log(abc.json())),
+    );
     const [inputs, setInputs] = useState({
         firstName: "firstName",
         middleName: "middleName",

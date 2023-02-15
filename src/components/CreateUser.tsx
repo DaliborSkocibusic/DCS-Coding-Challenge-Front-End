@@ -44,6 +44,7 @@ const UserInput = () => {
                         onChange={handleChange}
                     />
                 </label>
+
                 <label>
                     Enter the last name:
                     <input
