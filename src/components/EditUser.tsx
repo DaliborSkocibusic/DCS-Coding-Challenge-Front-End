@@ -1,28 +1,37 @@
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { SetStateAction, useEffect, useState } from "react";
+import { Params, useLocation, useParams } from "react-router-dom";
 
 const EditUser = () => {
-    // alert("WORKS");
     const id = useParams();
-    // console.log(id.id);
+    let url = "http://localhost:8080/User";
 
-    // let cleanId = id;
-    // console.log("clean id is: " + id + ". Type is: "+ {typeof(id)});
+    const [userDetails, getUserDetails] = useState([
+        {
+            id: "-1",
 
-    let userDetails = fetch("http://localhost:8080/User");
-    // .then((response) => response.json())
-    // .then((text) => {
-    //     return text.find((user: any) => user.id === id.id);
-    // });
+            firstName: "firstName",
+            middleName: "middleName",
+            lastName: "lastName",
+            contractLength: 1,
+            emailAddress: "example@example.com",
+        },
+    ]);
 
-    // let stuff = getData(id);
-    console.log("Userdetails fetched: " + userDetails);
+    useEffect(() => {
+        fetch(url)
+            .then((response) => {
+                if (response.status == 200) {
+                    response.json().then((data) => getUserDetails(data));
+                }
+            })
+            .catch((error) => {
+                console.log("Not found");
+            });
+    }, []);
 
-    console.log(
-        "Get user test" + userDetails.then((abc) => console.log(abc.json())),
-    );
     const [inputs, setInputs] = useState({
+        id: "-1",
         firstName: "firstName",
         middleName: "middleName",
         lastName: "lastName",
@@ -30,7 +39,7 @@ const EditUser = () => {
         emailAddress: "example@example.com",
     });
 
-    let inputsadf = "INPUT IS: " + JSON.stringify(inputs.contractLength);
+    console.log(userDetails.find((item) => item.id == id.id));
 
     const handleChange = (event: { target: { name: any; value: any } }) => {
         const name = event.target.name;
@@ -51,7 +60,10 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="firstName"
-                        value={userDetails.firstName || ""}
+                        defaultValue={
+                            userDetails.find((item) => item.id == id.id)
+                                ?.firstName || ""
+                        }
                         onChange={handleChange}
                     />
                 </label>
@@ -60,7 +72,10 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="middleName"
-                        value={userDetails.middleName || ""}
+                        defaultValue={
+                            userDetails.find((item) => item.id == id.id)
+                                ?.firstName || ""
+                        }
                         onChange={handleChange}
                     />
                 </label>
@@ -69,7 +84,10 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="lastName"
-                        value={userDetails.lastName || ""}
+                        defaultValue={
+                            userDetails.find((item) => item.id == id.id)
+                                ?.lastName || ""
+                        }
                         onChange={handleChange}
                     />
                 </label>
@@ -79,7 +97,10 @@ const EditUser = () => {
                     <input
                         type="number"
                         name="contractlenght"
-                        value={userDetails.contractLength || ""}
+                        defaultValue={
+                            userDetails.find((item) => item.id == id.id)
+                                ?.contractLength || ""
+                        }
                         onChange={handleChange}
                     />
                 </label>
@@ -89,7 +110,22 @@ const EditUser = () => {
                     <input
                         type="string"
                         name="emailAddress"
-                        value={userDetails.emailAddress || ""}
+                        defaultValue={
+                            userDetails.find((item) => item.id == id.id)
+                                ?.emailAddress || ""
+                        }
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    Enter the email address:
+                    <input
+                        type="string"
+                        name="emailAddress"
+                        value={
+                            userDetails.find((item) => item.id == id.id)?.id ||
+                            ""
+                        }
                         onChange={handleChange}
                     />
                 </label>
@@ -124,10 +160,4 @@ function updateUser(inputs: any) {
         }
     }),
         [];
-}
-
-async function getData(url: RequestInfo | URL) {
-    const response = await fetch(url);
-
-    return response.json();
 }
