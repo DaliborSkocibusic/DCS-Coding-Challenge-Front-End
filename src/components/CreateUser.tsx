@@ -24,60 +24,68 @@ const UserInput = () => {
     };
 
     return (
-        <>
+        <div className="updateForm">
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="formButton">
                     Enter the first name:
                     <input
                         type="string"
                         name="firstName"
                         value={inputs.firstName || ""}
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
-                <label>
+                <label className="formButton">
                     Enter the middle name:
                     <input
                         type="string"
                         name="middleName"
                         value={inputs.middleName || ""}
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
-
-                <label>
-                    Enter the last name:
+                <div className="elementColumn">
+                    <label className="formButton">Enter the last name:</label>
                     <input
                         type="string"
                         name="lastName"
                         value={inputs.lastName || ""}
                         onChange={handleChange}
+                        className="inputButton"
                     />
-                </label>
+                </div>
 
-                <label>
-                    Enter the contract length:
-                    <input
-                        type="number"
-                        name="contractlenght"
-                        value={inputs.contractLength || ""}
-                        onChange={handleChange}
-                    />
-                </label>
+                <div className="elementColumn">
+                    <label className="formButton">
+                        Enter the contract length:
+                        <input
+                            type="number"
+                            name="contractlenght"
+                            value={inputs.contractLength || ""}
+                            onChange={handleChange}
+                            className="inputButton"
+                        />
+                    </label>
+                </div>
 
-                <label>
-                    Enter the email address:
-                    <input
-                        type="string"
-                        name="emailAddress"
-                        value={inputs.emailAddress || ""}
-                        onChange={handleChange}
-                    />
-                </label>
+                <div className="elementColumn">
+                    <label className="formButton">
+                        Enter the email address:
+                        <input
+                            type="string"
+                            name="emailAddress"
+                            value={inputs.emailAddress || ""}
+                            onChange={handleChange}
+                            className="inputButton"
+                        />
+                    </label>
+                </div>
                 <input type="submit" onClick={() => alert("User Created")} />
             </form>
             <a href="/">Go Back</a>
-        </>
+        </div>
     );
 };
 export default UserInput;

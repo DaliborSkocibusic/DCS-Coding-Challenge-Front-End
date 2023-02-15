@@ -53,9 +53,9 @@ const EditUser = () => {
     };
 
     return (
-        <>
+        <div className="updateForm">
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="formButton">
                     Enter the first name:
                     <input
                         type="string"
@@ -65,9 +65,10 @@ const EditUser = () => {
                                 ?.firstName || ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
-                <label>
+                <label className="formButton">
                     Enter the middle name:
                     <input
                         type="string"
@@ -77,9 +78,10 @@ const EditUser = () => {
                                 ?.firstName || ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
-                <label>
+                <label className="formButton">
                     Enter the last name:
                     <input
                         type="string"
@@ -89,10 +91,11 @@ const EditUser = () => {
                                 ?.lastName || ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
 
-                <label>
+                <label className="formButton">
                     Enter the contract length:
                     <input
                         type="number"
@@ -102,10 +105,11 @@ const EditUser = () => {
                                 ?.contractLength || ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
 
-                <label>
+                <label className="formButton">
                     Enter the email address:
                     <input
                         type="string"
@@ -115,9 +119,10 @@ const EditUser = () => {
                                 ?.emailAddress || ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
-                <label>
+                <label className="formButton">
                     Enter the email address:
                     <input
                         type="string"
@@ -127,12 +132,13 @@ const EditUser = () => {
                             ""
                         }
                         onChange={handleChange}
+                        className="inputButton"
                     />
                 </label>
                 <input type="submit" />
             </form>
             <a href="/">Go Back</a>
-        </>
+        </div>
     );
 };
 export default EditUser;
