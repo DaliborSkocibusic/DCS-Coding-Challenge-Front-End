@@ -25,6 +25,7 @@
     width: 5vw;
 }
 
+/* In create and edit user */
 .updateForm {
     display: flex;
     flex-direction: column;
@@ -36,18 +37,23 @@
 
 }
 
+/* In create and edit user */
 .formButton {
     display: flex;
     flex-direction: row;
-    padding: 2em;
+    padding: 1em;
     justify-content: left;
     align-items: center;
+
 }
 
+/* In create user */
 .elementColumn {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 1em;
+    color: black;
+    justify-content: center;
 
 }
 
@@ -100,6 +106,14 @@
 .blackFont {
     font: black;
     border: black;
+}
+
+.createRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    width: 400px;
 }
 
 .emailAddress {

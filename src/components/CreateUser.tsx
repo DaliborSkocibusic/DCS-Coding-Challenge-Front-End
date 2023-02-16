@@ -24,63 +24,59 @@ const UserInput = () => {
     };
 
     return (
-        <div className="updateForm">
+        <div className="elementColumn">
             <form onSubmit={handleSubmit}>
-                <label className="formButton">
-                    Enter the first name:
+                <div className="createRow">
+                    <label>First name:</label>
                     <input
                         type="string"
                         name="firstName"
-                        value={inputs.firstName || ""}
+                        defaultValue={inputs.firstName || ""}
                         onChange={handleChange}
                         className="inputButton"
                     />
-                </label>
-                <label className="formButton">
-                    Enter the middle name:
+                </div>
+                <div className="createRow">
+                    <label>Middle name</label>
                     <input
                         type="string"
                         name="middleName"
-                        value={inputs.middleName || ""}
+                        defaultValue={inputs.middleName || ""}
                         onChange={handleChange}
                         className="inputButton"
                     />
-                </label>
-                <div className="elementColumn">
-                    <label className="formButton">Enter the last name:</label>
+                </div>
+                <div className="createRow">
+                    <label>Last name</label>
                     <input
                         type="string"
                         name="lastName"
-                        value={inputs.lastName || ""}
+                        defaultValue={inputs.lastName || ""}
                         onChange={handleChange}
                         className="inputButton"
                     />
                 </div>
 
-                <div className="elementColumn">
-                    <label className="formButton">
-                        Enter the contract length:
-                        <input
-                            type="number"
-                            name="contractlenght"
-                            value={inputs.contractLength || ""}
-                            onChange={handleChange}
-                            className="inputButton"
-                        />
-                    </label>
+                <div className="createRow">
+                    <label>Enter the contract length:</label>
+                    <input
+                        type="number"
+                        name="contractlenght"
+                        defaultValue={inputs.contractLength || ""}
+                        onChange={handleChange}
+                        className="inputButton"
+                    />
                 </div>
 
-                <div className="elementColumn">
-                    <label className="formButton">
-                        Enter the email address:
-                        <input
-                            type="string"
-                            name="emailAddress"
-                            value={inputs.emailAddress || ""}
-                            onChange={handleChange}
-                            className="inputButton"
-                        />
-                    </label>
+                <div className="createRow">
+                    <label>Email address:</label>
+                    <input
+                        type="string"
+                        name="emailAddress"
+                        defaultValue={inputs.emailAddress || ""}
+                        onChange={handleChange}
+                        className="inputButton"
+                    />
                 </div>
                 <input type="submit" onClick={() => alert("User Created")} />
             </form>

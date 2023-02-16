@@ -23,7 +23,12 @@ const ResultContainer = () => {
     return (
         <>
             <h1 className="contrastColour">Employee List</h1>;
-            <a href="/Create">Create</a>
+            <Card>
+                {/* onClick={console.log()}> */}
+                {/* Add Employee */}
+                <Link to={"/Create"}>Add Employee</Link>
+                {/* <a href="/Create">Add Employee</a> */}
+            </Card>
             {generateUserList(users)}
         </>
     );
@@ -118,7 +123,7 @@ function generateUserListSingle(data2: any) {
 
                 <div className="editButtons">
                     {/* <a href="/Edit">Edit</a> */}
-                    <Link to={"/EditUser/" + id}>EEDIT USER</Link>
+                    <Link to={"/EditUser/" + id}>EDIT USER</Link>
                     <Button
                         variant="contained"
                         color="error"
